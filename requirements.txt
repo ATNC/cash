@@ -1,0 +1,4 @@
+django
+psycopg2
+sorl-thumbnail
+django-flat-theme
