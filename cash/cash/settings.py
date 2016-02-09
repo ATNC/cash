@@ -14,7 +14,8 @@ import os
 import keys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+PROJECT_NAME = os.path.basename(BASE_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'pipeline',
+    'rest_framework',
+    'apps.cards',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -49,6 +54,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'pipeline.middleware.MinifyHTMLMiddleware',
+    'apps.cards.middleware.UserMiddleware',
 ]
 
 ROOT_URLCONF = 'cash.urls'
@@ -56,7 +63,9 @@ ROOT_URLCONF = 'cash.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'apps'),
+            os.path.join(BASE_DIR, PROJECT_NAME, 'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,7 +114,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -124,3 +139,57 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,PROJECT_NAME, "static"),
+    os.path.join(os.path.dirname(__file__), '..', 'bower_components'),
+]
+STATICFILES_ROOT = '/static/'
+
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+PIPELINE = {
+    'STYLESHEETS': {
+        'colors': {
+            'source_filenames': (
+              'css/main.css',
+                'bootstrap/dist/css/*'
+
+            ),
+            'output_filename': 'css/colors.css',
+            'extra_context': {
+                'media': 'screen,projection',
+            },
+        },
+    },
+    'JAVASCRIPT': {
+        'stats': {
+            'source_filenames': (
+              'js/main.js',
+              'js/directives/*.js',
+              'js/services/*.js',
+
+            ),
+            'output_filename': 'js/stats.js',
+        },
+        'bower': {
+            'source_filenames': (
+              'angular/angular.min.js',
+              'angular-ui-router/release/angular-ui-router.min.js',
+              'angular-resource/angular-resource.min.js',
+              'angular-cookies/angular-cookies.min.js',
+              'angular-ui-mask/dist/mask.min.js',
+
+              # 'js/d3.js',
+              # 'js/collections/*.js',
+              # 'js/application.js',
+            ),
+            'output_filename': 'js/bower.js',
+        }
+    }
+}
+
+PIPELINE['JS_COMPRESSOR'] = 'pipeline.compressors.jsmin.JSMinCompressor'
+

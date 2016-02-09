@@ -1,4 +1,5 @@
-django
+django<1.9
 psycopg2
-sorl-thumbnail
-django-flat-theme
+djangorestframework
+django-pipeline
+jsmin

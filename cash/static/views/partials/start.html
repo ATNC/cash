@@ -1,0 +1,17 @@
+<h1 ng-show="!show_pin">Страница ввода номера карты</h1>
+<h1 ng-show="show_pin">Страница ввода пин-кода</h1>
+    <form>
+        <div class="form-group" style="text-align: center" ng-show="!show_pin" >
+
+            <input style="display:inline-block; width:200px" type="text" class="form-control" id="num" placeholder="Номер карты"
+                   ng-model="card.cards_num"  ng-disabled="true">
+        </div>
+        <div class="form-group" ng-show="show_pin" >
+            <input style="display:inline-block; width:200px" type="password" class="form-control" id="pin" ng-disabled="true" placeholder="Введите пин-код" ng-model="card.cards_pin">
+        </div>
+        <p >&nbsp; {[ message ]}</p>
+
+    </form>
+    <keypad></keypad>
+
+

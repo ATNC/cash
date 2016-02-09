@@ -1,0 +1,93 @@
+<style>
+    .keyboard table{
+	border-spacing: 0px;
+}
+.keyboard{
+	/*position: fixed;*/
+	margin-top:10px;
+	z-index: 9;
+	height: 300px;
+	display:inline-block;
+}
+.keyboard .keyboard-content table{
+	/*position: fixed;*/
+	bottom: 0;
+	width: 170px;
+}
+.keyboard .keyboard-content table tr{
+	width: 200px;
+}
+.keyboard .keyboard-content table tr td{
+	width: 60px;
+}
+.keyboard .keyboard-content table tr td button{
+	width: 60px;
+	background-color: #DCD8D8;
+	height: 75px;
+}
+.keyboard-clear{
+	background-color: #BDAB07 !important;
+	color: white;
+}
+.keyboard-done{
+	background-color: #16CA1D !important;
+	color: white;
+}
+.keyboard-cell{
+	border: 1px solid #D2BABA;
+}
+
+.keyboard-focus{
+	border: 1px solid blue;
+}
+</style>
+
+<div class="keyboard"  ng-click="close()">
+	<div class="keyboard-content" ng-click="stopPropagation($event)">
+		<table>
+			<tr>
+				<td><button class="keyboard-cell" ng-click="append('1')">1</button>
+				</td>
+				<td><button class="keyboard-cell" ng-click="append('2')">2</button>
+				</td>
+				<td><button class="keyboard-cell" ng-click="append('3')">3</button>
+				</td>
+			</tr>
+
+			<tr>
+				<td><button class="keyboard-cell" ng-click="append('4')">4</button>
+				</td>
+				<td><button class="keyboard-cell" ng-click="append('5')">5</button>
+				</td>
+				<td><button class="keyboard-cell" ng-click="append('6')">6</button>
+				</td>
+			</tr>
+
+			<tr>
+				<td><button class="keyboard-cell" ng-click="append('7')">7</button>
+				</td>
+				<td><button class="keyboard-cell" ng-click="append('8')">8</button>
+				</td>
+				<td><button class="keyboard-cell" ng-click="append('9')">9</button>
+				</td>
+			</tr>
+
+			<tr>
+				<td><button class="keyboard-cell keyboard-clear" ng-click="clear()">Clear</button>
+				</td>
+				<td><button class="keyboard-cell" ng-click="append('0')">0</button>
+				</td>
+				<td>
+					<button class="keyboard-cell keyboard-done" ng-show="!show_pin" ng-click="getNum()">Set</button>
+					<button class="keyboard-cell keyboard-done" ng-show="show_pin" ng-click="tryAuth()">Set</button>
+				</td>
+			</tr>
+			<tr ng-show="show_pin">
+				<td colspan="3">
+					<button style="width:180px; background-color:#A72D2D" class="keyboard-cell" ng-click=" card.cards_num=undefined; show_pin = !show_pin">Exit</button>
+				</td>
+
+			</tr>
+		</table>
+	</div>
+</div>

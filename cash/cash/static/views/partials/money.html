@@ -1,0 +1,39 @@
+<div ng-show="!success">
+
+    <h1>Страница снятия денег</h1>
+    <form>
+            <div class="form-group" style="text-align: center" ng-show="!show_pin" >
+
+                <input style="display:inline-block; width:200px" type="text" class="form-control" id="num" placeholder="Введите сумму"
+                       ng-model="card.money"  ng-disabled="true">
+            </div>
+
+            <p class="error"> &nbsp; {[ message ]}  </p>
+
+    </form>
+    <keypad-money></keypad-money>
+</div>
+<div ng-show="success" class="row">
+    <h1>Страница результата операции</h1>
+    <div class="col-md-6 col-sm-6">
+
+        <h2>Номер карты: </h2>
+        <h2>Число:  </h2>
+        <h2>Снятая сумма: </h2>
+        <h2>Остаток на счету: </h2>
+    </div>
+    <div class="col-md-6 col-sm-6">
+
+        <h2><b ng-bind="info.card_num"></b> </h2>
+        <h2>{[ date | date:'dd-MM-yyyy hh:mm:ss' ]} </h2>
+        <h2>{[ card.money ]} </h2>
+        <h2>{[ info.card_balance - card.money ]} </h2>
+
+
+
+    </div>
+
+<button class="btn btn-default btn-lg" ng-click="success = !success" >Назад</button>
+<button class="btn btn-default btn-lg"  ng-click="logout()">Выход</button>
+
+</div>

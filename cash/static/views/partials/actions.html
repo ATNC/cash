@@ -1,0 +1,45 @@
+
+<div ng-show="balance" class="row">
+    <h1>Страница баланса</h1>
+    <div class="col-md-6 col-sm-6">
+
+        <h2>Номер карты: </h2>
+        <h2>Число:  </h2>
+        <h2>Cумма: </h2>
+    </div>
+    <div class="col-md-6 col-sm-6">
+
+        <h2><b ng-bind="info.card_num"></b> </h2>
+        <h2>{[ date | date:'dd-MM-yyyy' ]} </h2>
+        <h2>{[ info.card_balance ]} </h2>
+
+
+
+    </div>
+
+<button class="btn btn-default btn-lg" ng-click="balance = !balance" >back</button>
+<button class="btn btn-default btn-lg"  ng-click="logout()">Exit</button>
+
+</div>
+
+
+
+
+<div ng-show="!balance" class="row">
+            <h1>Страница операций</h1>
+
+    <div class="col-md-4 col-sm-4">
+        <button class="btn btn-primary btn-lg" ng-click="getBalance('CB'); balance = !balance" >Баланс</button>
+    </div>
+    <div class="col-md-4 col-sm-4">
+        <button  class="btn btn-primary btn-lg" ui-sref="account.money">Снятие денег</button>
+
+    </div>
+    <div class="col-md-4 col-sm-4">
+        <button class="btn btn-primary btn-lg" ng-click="logout()">Выход</button>
+
+    </div>
+
+
+
+</div>

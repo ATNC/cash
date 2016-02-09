@@ -1,0 +1,39 @@
+{% load staticfiles %}
+{% load pipeline %}
+
+
+{% javascript 'bower' %}
+{% javascript 'stats' %}
+{% stylesheet 'colors' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-app="cashApp">
+
+    {[ 2+2 ]}
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="view" ui-view="">
+
+
+
+                </div>
+
+            </div>
+            <!--<div class="col-md-8 col-sm-8"></div>-->
+            <!--<div class="col-lg-4"></div>-->
+
+        </div>
+
+    </div>
+
+</body>
+</html>
