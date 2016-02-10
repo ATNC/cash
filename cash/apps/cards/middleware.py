@@ -1,12 +1,13 @@
 from models import Cards
 from django.shortcuts import redirect
+from django.contrib.sessions.backends.db import SessionStore
 
 class UserMiddleware(object):
     cookie_name = 'usersession'
 
     def process_request(self, request):
         # print "="*20, request.session.set_expiry(0)
-        # print "="*20, request.session.get_expiry()
+        # print "="*20,  SessionStore.get
         if request.session.get('card_id'):
 
             request.usr = Cards.objects.get(cards_num = request.session.get('card_id'))

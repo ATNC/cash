@@ -18,7 +18,7 @@ class IndexView(TemplateView):
             card = Cards.objects.get(cards_num=cards_num)
             print 'here', card.cards_pin == int(data.get('cards_pin'))
             if card.cards_pin == int(data.get('cards_pin')):
-                request.session.set_expiry(15)
+                request.session.set_expiry(600)
                 #
                 # print "="*20, request.usr.cards_balance
                 request.session['card_id'] = int(cards_num)

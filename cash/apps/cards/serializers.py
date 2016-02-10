@@ -10,7 +10,11 @@ class CardsSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'url': {'lookup_field': 'cards_num'}
         }
-        fields = ('cards_num', 'cards_success',)
+        # fields = ('cards_num', 'cards_success', 'cards_')
+        # def update(self, instance, validated_data):
+        #     instance.decrement()
+        #     print instance.cards_success, "+"*20
+        #     return instance
 
 
 class CardsAuthSerializer(serializers.ModelSerializer):

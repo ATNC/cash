@@ -19,7 +19,7 @@ angular.module('cashApp', ['ui.router', 'ngResource', 'ngCookies', 'ui.mask'])
 
 
 
-            })
+            });
 $stateProvider
             // route for the aboutus page
             .state('account', {
