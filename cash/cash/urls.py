@@ -18,11 +18,8 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from apps.cards.api import CardList, CardDetail, Auth
 from rest_framework import routers
-from apps.cards.views import IndexView, get_id, add_transaction, logout
-# print '-'*10,applications.cards.api
-# print '-'*10,applications.cards.api
-router = routers.DefaultRouter()
-# router.register(r'accounts', UserView, 'list')
+from apps.cards.views import IndexView, get_id, add_transaction, logout, get_card
+
 
 
 urlpatterns = [
@@ -30,10 +27,7 @@ urlpatterns = [
     url(r'^$', IndexView.as_view()),
     url(r'^get_id/', get_id),
     url(r'^add_transaction/', add_transaction),
+    url(r'^get_card/', get_card),
     url(r'^logout/', logout),
-    url(r'^test/$', CardList.as_view()),
-    url(r'^test/auth/$', Auth.as_view()),
-    url(r'^test/(?P<cards_num>[0-9]+)$', CardDetail.as_view()),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
 ]

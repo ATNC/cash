@@ -27,7 +27,7 @@ SECRET_KEY = keys.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -151,6 +151,7 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 PIPELINE = {
+'PIPELINE_ENABLED': False,
     'STYLESHEETS': {
         'colors': {
             'source_filenames': (
@@ -168,8 +169,8 @@ PIPELINE = {
         'stats': {
             'source_filenames': (
               'js/main.js',
-              'js/directives/*.js',
-              'js/services/*.js',
+              'js/directives/directives.js',
+              'js/services/api_service.js',
 
             ),
             'output_filename': 'js/stats.js',

@@ -7,7 +7,9 @@ angular.module('cashApp')
             //ne rest
             //
             api.getCard = function (data) {
-                return $http.post('/', {data:data})
+                return $http.get('/get_card', {
+                    params: {data:data}
+                })
 
             };
             //api.getCard = function (data) {

@@ -15,6 +15,7 @@ angular.module('cashApp', ['ui.router', 'ngResource', 'ngCookies', 'ui.mask'])
                  //abstract: true,
                 url:'/',
                 templateUrl : '/static/views/home.html',
+                
                         //controller  : 'IndexController'
 
 
@@ -30,13 +31,14 @@ $stateProvider
                 resolve: {
                     first: function ($q, $http, $state) {
                         var deferred = $q.defer();
+
                         $http.get('/get_id').then(
                             function (response) {
                                 if (angular.isUndefined(response.data.info)) {
                                     $state.go('app');
-                                   deferred.reject(response.data)
+                                   deferred.reject(response.data);
                                 } else {
-                                    deferred.resolve(response.data)
+                                    deferred.resolve(response.data);
                                 }
                             }
                         );

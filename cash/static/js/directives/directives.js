@@ -19,6 +19,7 @@ angular.module('cashApp')
                 $scope.key_direct = 'cards_num';
                 $scope.key_length = 19;
                 $scope.getNum = function () {
+                    console.log($cookies)
                     $scope.error = false;
                     $scope.show_pin = false;
 
@@ -210,11 +211,14 @@ angular.module('cashApp')
                         controller: function ($scope) {
                             $scope.append = function (num) {
                                 $scope.message = ''
-                                if (!angular.isUndefined($scope.card[$scope.key_direct]) && $scope.card[$scope.key_direct].length >=20) {
+                                if (!angular.isUndefined($scope.card[$scope.key_direct])  && $scope.card[$scope.key_direct].length >=20
+                                    ) {
                                     return
                                 }
                                 if (angular.isUndefined($scope.card[$scope.key_direct])) {
-
+                                    if (num == 0) {
+                                        return
+                                    }
                                     $scope.card[$scope.key_direct] = num
                                 }
                                 else {
@@ -231,4 +235,3 @@ angular.module('cashApp')
                         }
                     }
                 }])
-
