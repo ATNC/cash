@@ -19,7 +19,6 @@ angular.module('cashApp')
                 $scope.key_direct = 'cards_num';
                 $scope.key_length = 19;
                 $scope.getNum = function () {
-                    console.log($cookies)
                     $scope.error = false;
                     $scope.show_pin = false;
 
